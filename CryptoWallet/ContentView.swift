@@ -9,15 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            WalletView()
+                .tabItem {
+                    Label("Wallet", systemImage: "creditcard")
+                }
+            
+            ExchangeView()
+                .tabItem {
+                    Label("Exchange", systemImage: "arrow.left.arrow.right")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
         }
-        .padding()
+        .accentColor(.blue)
     }
 }
+
 
 #Preview {
     ContentView()
