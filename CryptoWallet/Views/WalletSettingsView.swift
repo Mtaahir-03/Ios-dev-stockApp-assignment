@@ -24,6 +24,7 @@ struct WalletSettingsView: View {
                         } else {
                             ForEach(viewModel.wallets) { wallet in
                                 WalletRow(wallet: wallet)
+                                    .listRowBackground(Color.gray.opacity(0.1))
                             }
                             .onDelete(perform: viewModel.removeWallet)
                         }
@@ -36,6 +37,7 @@ struct WalletSettingsView: View {
                     }
                 }
                 .environment(\.editMode, $editMode)
+                .scrollContentBackground(.hidden)
                 
                 Button {
                     viewModel.isAddingWallet = true

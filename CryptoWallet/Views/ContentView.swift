@@ -53,6 +53,7 @@ struct ContentView: View {
             
             WalletSettingsView(viewModel: viewModel)
         }
+        .accentColor(Color(red: 0.376, green: 0.502, blue: 0.482))
         .onAppear {
             // fetch wallet balances when the app launches
             if !viewModel.wallets.isEmpty {
