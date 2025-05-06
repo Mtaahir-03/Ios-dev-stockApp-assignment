@@ -14,9 +14,9 @@ struct StyledButton: View {
         ZStack {
             Circle()
                 .fill(Gradients.fillGradient)
-                .offset(y: 35 * 0.3) // shift down so only 30% shows
-                .opacity(0.5)
-                .blur(radius: 7)
+                .offset(y: 35 * 0.22) // shift down so only 30% shows
+                .opacity(0.25)
+                .blur(radius: 6)
             
             Circle()
                 .fill(Gradients.fillGradient)

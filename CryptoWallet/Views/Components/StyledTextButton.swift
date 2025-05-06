@@ -16,8 +16,8 @@ struct StyledTextButton: View {
                     .fill(Gradients.fillGradient)
         
                     .offset(y: 35 * 0.3)
-                    .opacity(0.5)
-                    .blur(radius: 7)
+                    .opacity(0.25)
+                    .blur(radius: 6)
                 
                 RoundedRectangle(cornerRadius: 32, style: .continuous)
                     .fill(Gradients.fillGradient)

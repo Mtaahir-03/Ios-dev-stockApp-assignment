@@ -30,10 +30,16 @@ struct WalletSettingsView: View {
                         }
                     }
                 }
-                .navigationTitle("Wallet Settings")
+                .navigationTitle("Manage Wallets")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
+                        Button(action: {
+                            withAnimation {
+                                editMode = editMode == .inactive ? .active : .inactive
+                            }
+                        }) {
+                            StyledButton(iconName: editMode == .inactive ? "pencil" : "checkmark")
+                        }
                     }
                 }
                 .environment(\.editMode, $editMode)
