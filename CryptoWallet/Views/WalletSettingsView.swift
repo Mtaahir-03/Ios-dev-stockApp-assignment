@@ -13,34 +13,37 @@ struct WalletSettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Text("Your Wallets")) {
-                    if viewModel.wallets.isEmpty {
-                        Text("No wallets added yet")
-                            .foregroundColor(.secondary)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding()
-                    } else {
-                        ForEach(viewModel.wallets) { wallet in
-                            WalletRow(wallet: wallet)
+            VStack {
+                List {
+                    Section(header: Text("Your Wallets")) {
+                        if viewModel.wallets.isEmpty {
+                            Text("No wallets added yet")
+                                .foregroundColor(.secondary)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding()
+                        } else {
+                            ForEach(viewModel.wallets) { wallet in
+                                WalletRow(wallet: wallet)
+                            }
+                            .onDelete(perform: viewModel.removeWallet)
                         }
-                        .onDelete(perform: viewModel.removeWallet)
                     }
                 }
+                .navigationTitle("Wallet Settings")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                }
+                .environment(\.editMode, $editMode)
                 
-                Section {
-                    Button("Add New Wallet") {
-                        viewModel.isAddingWallet = true
-                    }
+                Button {
+                    viewModel.isAddingWallet = true
+                } label: {
+                    StyledTextButton(title: "Add New Wallet")
                 }
+                .padding(.bottom, 24)
             }
-            .navigationTitle("Wallet Settings")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-            }
-            .environment(\.editMode, $editMode)
         }
         .tabItem {
             Label("Settings", systemImage: "gear")

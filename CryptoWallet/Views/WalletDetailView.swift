@@ -23,13 +23,7 @@ struct WalletDetailView: View {
                 }
                 
                 Button {
-                    UIPasteboard.general.string = wallet.address
-                    showingCopiedToast = true
-                    
-                    // Hide toast after 2 seconds
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        showingCopiedToast = false
-                    }
+                    showingAddressSheet = true
                 } label: {
                     HStack {
                         Text("Address")
@@ -114,9 +108,10 @@ struct WalletDetailView: View {
                     Button {
                         UIPasteboard.general.string = wallet.address
                         showingCopiedToast = true
+                        showingAddressSheet = false
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            showingAddressSheet = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showingCopiedToast = false
                         }
                     } label: {
                         Label("Copy Address", systemImage: "doc.on.doc")

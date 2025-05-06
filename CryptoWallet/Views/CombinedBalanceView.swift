@@ -23,7 +23,6 @@ struct CombinedBalanceView: View {
                     }
                     .buttonStyle(.borderedProminent)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 ScrollView {
                     VStack {

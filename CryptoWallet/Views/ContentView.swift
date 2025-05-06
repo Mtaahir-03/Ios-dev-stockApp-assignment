@@ -14,7 +14,7 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 CombinedBalanceView(viewModel: viewModel)
-                    .navigationTitle("My Wallets")
+                    .navigationTitle("Wallets")
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: {
@@ -22,7 +22,7 @@ struct ContentView: View {
                                     await viewModel.fetchAllWalletBalances()
                                 }
                             }) {
-                                Image(systemName: "arrow.clockwise")
+                                StyledButton(iconName: "arrow.clockwise")
                             }
                         }
                         
@@ -30,7 +30,7 @@ struct ContentView: View {
                             Button(action: {
                                 viewModel.isAddingWallet = true
                             }) {
-                                Image(systemName: "plus")
+                                StyledButton(iconName: "plus")
                             }
                         }
                     }
@@ -76,7 +76,6 @@ struct ContentView: View {
         }
     }
 }
-
 
 #Preview {
     ContentView()
