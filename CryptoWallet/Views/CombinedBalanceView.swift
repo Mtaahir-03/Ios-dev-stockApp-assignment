@@ -8,11 +8,67 @@
 import SwiftUI
 
 struct CombinedBalanceView: View {
+    @ObservedObject var viewModel: WalletViewModel
+    @State private var showingAddWallet = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if viewModel.wallets.isEmpty {
+                VStack(spacing: 20) {
+                    Text("No wallets added yet")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    Button("Add Your First Wallet") {
+                        showingAddWallet = true
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                ScrollView {
+                    VStack {
+                        Text("Total Portfolio Value")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        
+                        Text(viewModel.formattedTotalBalanceUSD)
+                            .font(.system(size: 42, weight: .bold))
+                            .padding(.bottom)
+                        
+                        ForEach(viewModel.wallets) { wallet in
+                            NavigationLink(destination: WalletDetailView(wallet: wallet)) {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(wallet.name)
+                                            .font(.headline)
+                                        
+                                        Text(wallet.address.prefix(6) + "..." + wallet.address.suffix(4))
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Text(String(format: "$%.2f", wallet.totalValueUSD))
+                                        .bold()
+                                }
+                                .padding()
+                                .background(Color.gray.opacity(0.1))
+                                .cornerRadius(10)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .padding()
+                }
+            }
+        }
+        .sheet(isPresented: $showingAddWallet) {
+            AddWalletView(viewModel: viewModel)
+        }
     }
 }
 
 #Preview {
-    CombinedBalanceView()
+    CombinedBalanceView(viewModel: WalletViewModel())
 }

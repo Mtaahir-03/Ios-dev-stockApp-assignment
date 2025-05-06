@@ -1,0 +1,57 @@
+// api response for get wallet balances
+// docs: https://docs.moralis.com/web3-data-api/evm/reference/wallet-api/get-wallet-token-balances-price?address=0x00000000000000C0D7D3017B342ff039B55b0879&chain=eth&token_addresses=%5B%5D
+
+{
+  "cursor": null,
+  "page": 0,
+  "page_size": 100,
+  "block_number": 22423547,
+  "result": [
+    {
+      "token_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "symbol": "ETH",
+      "name": "Ether",
+      "logo": "https://cdn.moralis.io/eth/0x.png",
+      "thumbnail": "https://cdn.moralis.io/eth/0x_thumb.png",
+      "decimals": 18,
+      "balance": "4008281928296834",
+      "possible_spam": false,
+      "verified_contract": true,
+      "total_supply": null,
+      "total_supply_formatted": null,
+      "percentage_relative_to_total_supply": null,
+      "security_score": 99,
+      "balance_formatted": "0.004008281928296834",
+      "usd_price": 1797.6361727605838,
+      "usd_price_24hr_percent_change": -1.496163429614839,
+      "usd_price_24hr_usd_change": -27.25971485590003,
+      "usd_value": 7.205432584928934,
+      "usd_value_24hr_usd_change": -0.10926462242742882,
+      "native_token": true,
+      "portfolio_percentage": 100.00000000000001
+    },
+    {
+      "token_address": "0x0000000000071821e8033345a7be174647be0706",
+      "symbol": "SCRY",
+      "name": "Scry Protocol",
+      "logo": null,
+      "thumbnail": null,
+      "decimals": 18,
+      "balance": "178213668053355974306",
+      "possible_spam": true,
+      "verified_contract": false,
+      "total_supply": "120000001000000000000000000",
+      "total_supply_formatted": "120000001",
+      "percentage_relative_to_total_supply": 0.000148511388806868,
+      "security_score": 53,
+      "balance_formatted": "178.213668053355974306",
+      "usd_price": 0,
+      "usd_price_24hr_percent_change": 0,
+      "usd_price_24hr_usd_change": 0,
+      "usd_value": 0,
+      "usd_value_24hr_usd_change": 0,
+      "native_token": false,
+      "portfolio_percentage": 0
+    }
+  ]
+}
