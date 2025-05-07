@@ -7,7 +7,7 @@
 
 import Foundation
 
-let key = ""
+let key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImUwMWYwOGUyLTRmMzUtNGZlNy1hZGJhLTAwYzY3ZjlmNzJhYiIsIm9yZ0lkIjoiNDQ1MDMxIiwidXNlcklkIjoiNDU3ODgxIiwidHlwZUlkIjoiMTRhNjUwMTAtNzgxYy00MDc3LTk1NzEtMjEyMjk4ZDIzYWYxIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDYyNTMxMzEsImV4cCI6NDkwMjAxMzEzMX0.AvOuOeUqyOt9XASxbfknamc0jRd-pz5ZLRih_d4qgoI"
 
 class MoralisAPI {
     private let apiKey = key // Replace

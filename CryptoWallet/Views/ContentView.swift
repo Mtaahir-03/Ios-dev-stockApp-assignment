@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = WalletViewModel()
-    
+
     var body: some View {
         TabView {
             NavigationView {
@@ -25,7 +25,7 @@ struct ContentView: View {
                                 StyledButton(iconName: "arrow.clockwise")
                             }
                         }
-                        
+
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: {
                                 viewModel.isAddingWallet = true
@@ -43,15 +43,25 @@ struct ContentView: View {
             .tabItem {
                 Label("Wallets", systemImage: "wallet.pass")
             }
-            
+
             NavigationView {
                 MarketView(viewModel: viewModel)
             }
             .tabItem {
                 Label("Market", systemImage: "chart.line.uptrend.xyaxis")
             }
-            
+
+            NavigationView {
+                TokenDatabaseView(viewModel: viewModel)
+            }
+            .tabItem {
+                Label("Database", systemImage: "list.bullet.rectangle")
+            }
+
             WalletSettingsView(viewModel: viewModel)
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
         }
         .accentColor(Color(red: 0.376, green: 0.502, blue: 0.482))
         .onAppear {
