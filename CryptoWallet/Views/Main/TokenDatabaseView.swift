@@ -66,6 +66,18 @@ struct TokenDatabaseView: View {
                 .padding(.horizontal)
 
                 HStack {
+                    Text("Investment Amount")
+                        .font(.subheadline)
+                        .foregroundColor(ColorTheme.secondaryText)
+                    Spacer()
+                    TextField("Amount", value: $investmentAmount, format: .number)
+                        .keyboardType(.decimalPad)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(width: 100)
+                }
+                .padding(.horizontal)
+
+                HStack {
                     Text("Investment Amount: $\(Int(investmentAmount))")
                         .font(.subheadline)
                         .foregroundColor(ColorTheme.secondaryText)
@@ -73,8 +85,7 @@ struct TokenDatabaseView: View {
                 }
                 .padding(.horizontal)
 
-                Slider(value: $investmentAmount, in: 10...10000, step: 10)
-                    .padding(.horizontal)
+                
 
                 LazyVStack(spacing: 12) {
                     ForEach(filteredTokens) { token in
