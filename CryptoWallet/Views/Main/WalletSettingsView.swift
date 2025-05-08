@@ -162,7 +162,7 @@ struct WalletSettingsView: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
-            .background(ColorTheme.background.edgesIgnoringSafeArea(.all))
+            .background(ColorTheme.background)
         }
     }
 }
