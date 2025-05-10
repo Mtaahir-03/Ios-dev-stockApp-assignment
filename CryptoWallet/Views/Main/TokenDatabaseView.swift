@@ -1,4 +1,5 @@
 import SwiftUI
+import Charts
 
 struct TokenDatabaseView: View {
     @ObservedObject var viewModel: WalletViewModel
@@ -76,16 +77,6 @@ struct TokenDatabaseView: View {
                         .frame(width: 100)
                 }
                 .padding(.horizontal)
-
-                HStack {
-                    Text("Investment Amount: $\(Int(investmentAmount))")
-                        .font(.subheadline)
-                        .foregroundColor(ColorTheme.secondaryText)
-                    Spacer()
-                }
-                .padding(.horizontal)
-
-                
 
                 LazyVStack(spacing: 12) {
                     ForEach(filteredTokens) { token in
