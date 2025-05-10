@@ -1,4 +1,3 @@
-// TokenPriceView.swift - Update this file
 import SwiftUI
 
 struct TokenPriceView: View {
@@ -10,7 +9,6 @@ struct TokenPriceView: View {
         case day = "1D"
         case week = "1W"
         case month = "1M"
-        case threeMonths = "3M"
         case year = "1Y"
         case all = "All"
     }
@@ -60,64 +58,72 @@ struct TokenPriceView: View {
                 // Chart period selection
                 HStack {
                     ForEach(TimeRange.allCases, id: \.self) { range in
-                        Button(action: {
-                            timeRange = range
-                            // Would fetch new price data for this period
-                        }) {
+                        Button {
+                            withAnimation {
+                                timeRange = range
+                            }
+                            Task {
+                                await viewModel.fetchPriceHistory(for: token.symbol, range: range)
+                            }
+                        } label: {
                             Text(range.rawValue)
                                 .font(Typography.footnote)
                                 .fontWeight(timeRange == range ? .bold : .regular)
-                                .foregroundColor(timeRange == range ? 
-                                    (isPriceUp ? ColorTheme.accent : ColorTheme.negative) : 
-                                    ColorTheme.secondaryText)
+                                .foregroundColor(timeRange == range ?
+                                                 (isPriceUp ? ColorTheme.accent : ColorTheme.negative) :
+                                                    ColorTheme.secondaryText)
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 12)
                                 .background(
                                     RoundedRectangle(cornerRadius: 8)
-                                        .fill(timeRange == range ? 
-                                              (isPriceUp ? ColorTheme.accent.opacity(0.1) : ColorTheme.negative.opacity(0.1)) : 
-                                              Color.clear)
+                                        .fill(timeRange == range ?
+                                              (isPriceUp ? ColorTheme.accent.opacity(0.1) : ColorTheme.negative.opacity(0.1)) :
+                                                Color.clear)
                                 )
                         }
+                        .id("timeRange-\(range)") // unique id to force refresh
                     }
                 }
                 .padding(.horizontal)
                 
                 // Price chart
-                if viewModel.isLoading {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, minHeight: 200)
-                } else if viewModel.priceHistory.isEmpty {
-                    Text("No price data available")
-                        .font(Typography.body)
-                        .foregroundColor(ColorTheme.secondaryText)
-                        .frame(maxWidth: .infinity, minHeight: 200, alignment: .center)
-                } else {
-                    CardView {
-                        VStack(alignment: .leading, spacing: 16) {
-                            PriceChartView(priceData: viewModel.priceHistory)
-                            
-                            // Price range
-                            HStack {
-                                if let min = viewModel.priceHistory.min(by: { $0.price < $1.price })?.price,
-                                   let max = viewModel.priceHistory.max(by: { $0.price < $1.price })?.price {
-                                    Text("$\(String(format: "%.2f", min))")
-                                        .font(Typography.caption)
-                                        .foregroundColor(ColorTheme.secondaryText)
-                                    
-                                    Spacer()
-                                    
-                                    Text("$\(String(format: "%.2f", max))")
-                                        .font(Typography.caption)
-                                        .foregroundColor(ColorTheme.secondaryText)
+                Group {
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .frame(maxWidth: .infinity, minHeight: 200)
+                    } else if viewModel.priceHistory.isEmpty {
+                        Text("No price data available")
+                            .font(Typography.body)
+                            .foregroundColor(ColorTheme.secondaryText)
+                            .frame(maxWidth: .infinity, minHeight: 200, alignment: .center)
+                    } else {
+                        CardView {
+                            VStack(alignment: .leading, spacing: 16) {
+                                PriceChartView(priceData: viewModel.priceHistory)
+                                    .id("chart-\(timeRange)") // Force chart refresh when timeRange changes
+                                
+                                // Price range
+                                HStack {
+                                    if let min = viewModel.priceHistory.min(by: { $0.price < $1.price })?.price,
+                                       let max = viewModel.priceHistory.max(by: { $0.price < $1.price })?.price {
+                                        Text("$\(String(format: "%.2f", min))")
+                                            .font(Typography.caption)
+                                            .foregroundColor(ColorTheme.secondaryText)
+                                        
+                                        Spacer()
+                                        
+                                        Text("$\(String(format: "%.2f", max))")
+                                            .font(Typography.caption)
+                                            .foregroundColor(ColorTheme.secondaryText)
+                                    }
                                 }
                             }
                         }
                     }
-                    .padding(.horizontal)
                 }
+                .padding(.horizontal)
+                .id("chart-container-\(timeRange)") // id to ensure container refreshes
                 
-                // Your holdings
                 CardView {
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Your Holdings")
@@ -189,6 +195,13 @@ struct TokenPriceView: View {
                     }
                 }
                 .padding(.horizontal)
+                
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .font(Typography.caption)
+                        .foregroundColor(ColorTheme.negative)
+                        .padding(.horizontal)
+                }
             }
             .padding(.vertical)
         }
@@ -196,8 +209,12 @@ struct TokenPriceView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             Task {
-                await viewModel.fetchPriceHistory(for: token.symbol)
+                await viewModel.fetchPriceHistory(for: token.symbol, range: timeRange)
             }
         }
     }
+}
+
+#Preview {
+    TokenPriceView(token: TokenBalance(symbol: "eth", name: "Ethereum", balance: 1, decimals: 18, tokenAddress: "", price: 2000))
 }

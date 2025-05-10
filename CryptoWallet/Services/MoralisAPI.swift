@@ -76,31 +76,4 @@ class MoralisAPI {
         let response = try JSONDecoder().decode(PriceResponse.self, from: data)
         return response.usdPrice
     }
-    
-    func getPriceHistory(for symbol: String, days: Int = 7) async throws -> [PriceData] {
-        // DEMO NEED TO USE Moralis API to get historical price data
-        // placeholder that returns mock data for example
-        
-        let now = Date()
-        let calendar = Calendar.current
-        
-        var priceData: [PriceData] = []
-        
-        // generate some random price data for the last 7 days
-        for day in 0..<days {
-            guard let date = calendar.date(byAdding: .day, value: -day, to: now) else {
-                continue
-            }
-            
-            // random price fluctuation around $2000 for example
-            let randomPrice = 2000.0 + Double.random(in: -200...200)
-            
-            priceData.append(PriceData(
-                timestamp: date,
-                price: randomPrice
-            ))
-        }
-        
-        return priceData.reversed()
-    }
 }

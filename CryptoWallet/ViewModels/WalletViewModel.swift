@@ -17,6 +17,7 @@ class WalletViewModel: ObservableObject {
     @Published var newWalletAddress = ""
     
     private let moralisAPI = MoralisAPI()
+    private let coinGeckoAPI = CoinGeckoAPI()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
