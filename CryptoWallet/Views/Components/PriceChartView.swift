@@ -23,19 +23,14 @@ struct PriceChartView: View {
         stride(from: maxY, through: minY, by: -(maxY - minY) / 4).map { $0 }
     }
 
-    private var xTickIndices: [Int] {
-        let step = max(1, priceData.count / 6)
-        return Array(stride(from: 0, to: priceData.count, by: step))
-    }
-
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 12) {
+            // Chart area
             GeometryReader { geometry in
                 let chartWidth = geometry.size.width - 60
                 let chartHeight = geometry.size.height
 
                 ZStack(alignment: .topLeading) {
-                    // Y-axis grid lines
                     VStack(spacing: 0) {
                         ForEach(yTicks, id: \.self) { value in
                             HStack(spacing: 4) {
@@ -52,15 +47,13 @@ struct PriceChartView: View {
                         }
                     }
 
-                    // Chart area and line
                     ZStack {
                         // Area fill
                         Path { path in
                             path.move(to: CGPoint(x: 0, y: chartHeight))
                             for (index, data) in priceData.enumerated() {
                                 let x = chartWidth / CGFloat(priceData.count - 1) * CGFloat(index)
-                                let yRange = maxY - minY
-                                let y = chartHeight - CGFloat((data.price - minY) / yRange) * chartHeight
+                                let y = chartHeight - CGFloat((data.price - minY) / (maxY - minY)) * chartHeight
                                 path.addLine(to: CGPoint(x: x, y: y))
                             }
                             path.addLine(to: CGPoint(x: chartWidth, y: chartHeight))
@@ -77,13 +70,11 @@ struct PriceChartView: View {
                             )
                         )
 
-                        // Price line
+                        // Line stroke
                         Path { path in
                             for (index, data) in priceData.enumerated() {
                                 let x = chartWidth / CGFloat(priceData.count - 1) * CGFloat(index)
-                                let yRange = maxY - minY
-                                let y = chartHeight - CGFloat((data.price - minY) / yRange) * chartHeight
-
+                                let y = chartHeight - CGFloat((data.price - minY) / (maxY - minY)) * chartHeight
                                 if index == 0 {
                                     path.move(to: CGPoint(x: x, y: y))
                                 } else {
@@ -101,11 +92,10 @@ struct PriceChartView: View {
                 }
             }
             .frame(height: 200)
-            .padding(.bottom, 8)
 
-            // X-axis labels only (no prices below)
+            // X-axis date labels
             HStack(spacing: 0) {
-                ForEach(xTickIndices, id: \.self) { index in
+                ForEach(priceData.indices, id: \.self) { index in
                     Text(dateFormatter.string(from: priceData[index].timestamp))
                         .font(.caption2)
                         .foregroundColor(.gray)
@@ -113,8 +103,30 @@ struct PriceChartView: View {
                 }
             }
             .padding(.leading, 60)
-            .padding(.top, 6)
+            .padding(.top, 4)
+
+            // List of price history
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Price History")
+                    .font(.headline)
+                    .padding(.top)
+
+                ForEach(priceData.reversed(), id: \.timestamp) { entry in
+                    HStack {
+                        Text(dateFormatter.string(from: entry.timestamp))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("$\(String(format: "%.2f", entry.price))")
+                            .font(.caption)
+                            .foregroundColor(.primary)
+                    }
+                    .padding(.horizontal)
+                }
+            }
+            .padding(.top, 8)
         }
         .padding(.top)
+        .padding(.bottom)
     }
 }
