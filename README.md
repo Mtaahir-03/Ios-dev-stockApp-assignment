@@ -21,6 +21,7 @@ UserDefaults: Employed for local data persistence of wallet addresses
 
 Screenshots
 [Include 3-4 screenshots of your app here]
+
 Technical Implementation
 Architecture
 The app follows the MVVM (Model-View-ViewModel) architecture:
