@@ -1,4 +1,3 @@
-// Update ColorTheme.swift to support dark mode
 import SwiftUI
 
 struct ColorTheme {

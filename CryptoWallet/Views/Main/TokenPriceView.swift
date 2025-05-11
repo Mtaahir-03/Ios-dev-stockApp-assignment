@@ -55,7 +55,7 @@ struct TokenPriceView: View {
                 }
                 .padding(.horizontal)
                 
-                // Chart period selection
+                // chart period selection
                 HStack {
                     ForEach(TimeRange.allCases, id: \.self) { range in
                         Button {
@@ -153,44 +153,6 @@ struct TokenPriceView: View {
                                     .font(Typography.caption)
                                     .foregroundColor(ColorTheme.secondaryText)
                             }
-                        }
-                    }
-                }
-                .padding(.horizontal)
-                
-                // Market data
-                CardView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("Market Data")
-                            .font(Typography.title3)
-                            .foregroundColor(ColorTheme.text)
-                        
-                        Divider()
-                        
-                        HStack {
-                            Text("Token Address")
-                                .font(Typography.body)
-                                .foregroundColor(ColorTheme.text)
-                            
-                            Spacer()
-                            
-                            Text(token.tokenAddress.prefix(6) + "..." + token.tokenAddress.suffix(4))
-                                .font(Typography.caption)
-                                .foregroundColor(ColorTheme.secondaryText)
-                        }
-                        
-                        Divider()
-                        
-                        HStack {
-                            Text("Decimals")
-                                .font(Typography.body)
-                                .foregroundColor(ColorTheme.text)
-                            
-                            Spacer()
-                            
-                            Text("\(token.decimals)")
-                                .font(Typography.caption)
-                                .foregroundColor(ColorTheme.secondaryText)
                         }
                     }
                 }

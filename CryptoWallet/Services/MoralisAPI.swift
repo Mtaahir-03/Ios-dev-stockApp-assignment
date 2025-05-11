@@ -7,10 +7,8 @@
 
 import Foundation
 
-let key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImUwMWYwOGUyLTRmMzUtNGZlNy1hZGJhLTAwYzY3ZjlmNzJhYiIsIm9yZ0lkIjoiNDQ1MDMxIiwidXNlcklkIjoiNDU3ODgxIiwidHlwZUlkIjoiMTRhNjUwMTAtNzgxYy00MDc3LTk1NzEtMjEyMjk4ZDIzYWYxIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDYyNTMxMzEsImV4cCI6NDkwMjAxMzEzMX0.AvOuOeUqyOt9XASxbfknamc0jRd-pz5ZLRih_d4qgoI"
-
 class MoralisAPI {
-    private let apiKey = key // Replace
+    private let apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImUwMWYwOGUyLTRmMzUtNGZlNy1hZGJhLTAwYzY3ZjlmNzJhYiIsIm9yZ0lkIjoiNDQ1MDMxIiwidXNlcklkIjoiNDU3ODgxIiwidHlwZUlkIjoiMTRhNjUwMTAtNzgxYy00MDc3LTk1NzEtMjEyMjk4ZDIzYWYxIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDYyNTMxMzEsImV4cCI6NDkwMjAxMzEzMX0.AvOuOeUqyOt9XASxbfknamc0jRd-pz5ZLRih_d4qgoI"
     private let baseURL = "https://deep-index.moralis.io/api/v2.2"
     
     struct WalletTokensResponse: Decodable {

@@ -110,16 +110,9 @@ struct ContentView: View {
                         }
                         .tag(3)
                     }
-                    
-                    // Alternative: Use your custom tab bar instead of SwiftUI's built-in TabView
-                    // CustomTabBar(selectedTab: $selectedTab, tabItems: [
-                    //     .init(icon: "wallet.pass", selectedIcon: "wallet.pass.fill", title: "Wallets"),
-                    //     .init(icon: "chart.line.uptrend.xyaxis", selectedIcon: "chart.line.uptrend.xyaxis.circle.fill", title: "Market"),
-                    //     .init(icon: "list.bullet.rectangle", selectedIcon: "list.bullet.rectangle.fill", title: "Database"),
-                    //     .init(icon: "gear", selectedIcon: "gear.circle.fill", title: "Settings")
-                    // ])
                 }
                 .accentColor(ColorTheme.accent)
+                .padding(.horizontal)
                 
                 // Error toast
                 if viewModel.errorMessage != nil {

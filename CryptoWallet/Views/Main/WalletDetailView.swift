@@ -179,7 +179,7 @@ struct WalletDetailView: View {
                         Label("Copy Address", systemImage: "doc.on.doc")
                             .padding()
                     }
-                    .buttonStyle(PrimaryButtonStyle())
+                    .buttonStyle(AddWalletButtonStyle())
                     
                     Spacer()
                 }

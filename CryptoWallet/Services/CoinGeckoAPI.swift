@@ -26,7 +26,8 @@ class CoinGeckoAPI {
         return try await fetchMarketChart(for: coinID, days: days)
     }
     
-    // gets the Coin Gecko list of supported cryptocurrencies to map the symbol (used by moralis) to the id (used by Coin Gecko)
+    // gets the Coin Gecko list of supported cryptocurrencies
+    // used to map the symbol (used by moralis) to the id (used by Coin Gecko)
     private func fetchCoinID(for symbol: String) async throws -> String {
         if let cachedCoins = coinsList {
             if let match = cachedCoins.first(where: { $0.symbol.lowercased() == symbol.lowercased() }) {
@@ -69,8 +70,7 @@ class CoinGeckoAPI {
             let timestamp = Date(timeIntervalSince1970: entry[0] / 1000)
             return PriceData(timestamp: timestamp, price: entry[1])
         }
-        print(priceData)
+
         return priceData
     }
-    
 }

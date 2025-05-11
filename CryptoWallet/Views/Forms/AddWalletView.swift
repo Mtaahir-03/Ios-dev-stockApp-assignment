@@ -66,7 +66,7 @@ struct AddWalletView: View {
                         dismiss()
                     }
                 }
-                .buttonStyle(PrimaryButtonStyle())
+                .buttonStyle(AddWalletButtonStyle())
                 .disabled(viewModel.newWalletName.isEmpty || viewModel.newWalletAddress.isEmpty)
                 .padding(.bottom, 20)
             }

@@ -1,4 +1,3 @@
-// CombinedBalanceView.swift - Update this file
 import SwiftUI
 
 struct CombinedBalanceView: View {
@@ -45,7 +44,7 @@ struct CombinedBalanceView: View {
                             Button("Add Your First Wallet") {
                                 showingAddWallet = true
                             }
-                            .buttonStyle(PrimaryButtonStyle())
+                            .buttonStyle(AddWalletButtonStyle())
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 40)
@@ -100,20 +99,6 @@ struct CombinedBalanceView: View {
     }
 }
 
-// New button style
-struct PrimaryButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.vertical, 12)
-            .padding(.horizontal, 24)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(ColorTheme.accent)
-                    .opacity(configuration.isPressed ? 0.8 : 1.0)
-            )
-            .foregroundColor(.white)
-            .font(Typography.bodyBold)
-            .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
-            .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
-    }
+#Preview {
+    CombinedBalanceView(viewModel: WalletViewModel())
 }

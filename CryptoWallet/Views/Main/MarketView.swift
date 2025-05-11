@@ -40,7 +40,6 @@ struct MarketView: View {
                     NavigationLink(destination: TokenPriceView(token: token)) {
                         CardView {
                             HStack {
-                                // Token icon placeholder
                                 Circle()
                                     .fill(token.symbol.hashValue % 2 == 0 ? ColorTheme.accent.opacity(0.2) : ColorTheme.negative.opacity(0.2))
                                     .frame(width: 40, height: 40)
@@ -66,17 +65,6 @@ struct MarketView: View {
                                     Text("$\(String(format: "%.2f", token.price))")
                                         .font(Typography.bodyBold)
                                         .foregroundColor(ColorTheme.text)
-                                    
-                                    // Random price change for demo purposes
-                                    let randomChange = Double.random(in: -5...5)
-                                    HStack(spacing: 2) {
-                                        Image(systemName: randomChange >= 0 ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
-                                            .font(.caption2)
-                                        
-                                        Text("\(String(format: "%.2f", abs(randomChange)))%")
-                                            .font(Typography.caption)
-                                    }
-                                    .foregroundColor(randomChange >= 0 ? ColorTheme.accent : ColorTheme.negative)
                                 }
                             }
                         }
@@ -100,4 +88,8 @@ struct MarketView: View {
             }
         }
     }
+}
+
+#Preview {
+    MarketView(viewModel: WalletViewModel())
 }
