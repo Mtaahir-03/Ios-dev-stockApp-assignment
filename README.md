@@ -80,3 +80,48 @@ During development, we encountered several challenges:
 ### API Data Synchronization:
 - Challenge: Keeping wallet data updated across the app
 - Solution: Implemented async/await pattern for clean API calls and UI updates
+
+## Installation & Setup
+### Requirements
+
+- iOS 15.0+
+- Xcode 13.0+
+- Swift 5.5+
+- A Moralis API key
+
+## Getting Started
+
+1. Clone the repository
+[Repository](git clone https://github.com/yourusername/crypto-wallet.git)
+
+2. Open the Xcode project file
+open CryptoWallet.xcodeproj
+
+3. Add your Moralis API key in MoralisAPI.swift
+4. Build and run the application
+
+Team Members
+
+- Taahir Mahomed -
+- [Team Member 2] - [Role]
+- [Team Member 3] - [Role]
+
+## Future Enhancements
+Features we plan to implement in future versions:
+
+- Token price alerts
+- Historical portfolio performance tracking
+- Additional wallet types (Bitcoin, etc.)
+- Transaction history tracking
+- Custom token management
+
+## License
+This project was created for educational purposes as part of a university assignment.
+
+## Acknowledgements
+
+- Moralis API for cryptocurrency data
+- Apple's SwiftUI and iOS development resources
+
+
+Note: This application is a demonstration project and not intended for managing real cryptocurrency investments.
