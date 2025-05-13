@@ -103,8 +103,8 @@ open CryptoWallet.xcodeproj
 Team Members
 
 - Taahir Mahomed -
-- [Team Member 2] - [Role]
-- [Team Member 3] - [Role]
+- Shaiyan Khan
+- Steven Yong
 
 ## Future Enhancements
 Features we plan to implement in future versions:
