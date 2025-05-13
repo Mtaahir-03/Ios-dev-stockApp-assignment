@@ -92,7 +92,7 @@ During development, we encountered several challenges:
 ## Getting Started
 
 1. Clone the repository
-[Repository](git clone https://github.com/yourusername/crypto-wallet.git)
+[git clone ](https://github.com/yourusername/crypto-wallet.git)
 
 2. Open the Xcode project file
 open CryptoWallet.xcodeproj
