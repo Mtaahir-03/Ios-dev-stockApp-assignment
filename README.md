@@ -93,12 +93,11 @@ During development, we encountered several challenges:
 
 1. Clone the repository
 - [Github repository clone](https://github.com/yourusername/crypto-wallet.git)
-
 2. Open the Xcode project file
 - open CryptoWallet.xcodeproj
-
 3. Add your Moralis API key in MoralisAPI.swift
-4. Build and run the application
+4. Add your CoinGecko API key in CoinGecko.swift
+5. Build and run the application
 
 Team Members
 
@@ -121,6 +120,7 @@ This project was created for educational purposes as part of a university assign
 ## Acknowledgements
 
 - Moralis API for cryptocurrency data
+- CoinGecko API for cryptocurrency data
 - Apple's SwiftUI and iOS development resources
 
 
