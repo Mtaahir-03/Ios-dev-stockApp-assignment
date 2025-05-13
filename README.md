@@ -92,17 +92,17 @@ During development, we encountered several challenges:
 ## Getting Started
 
 1. Clone the repository
-[git clone ](https://github.com/yourusername/crypto-wallet.git)
+- [Github repository clone](https://github.com/yourusername/crypto-wallet.git)
 
 2. Open the Xcode project file
-open CryptoWallet.xcodeproj
+- open CryptoWallet.xcodeproj
 
 3. Add your Moralis API key in MoralisAPI.swift
 4. Build and run the application
 
 Team Members
 
-- Taahir Mahomed -
+- Taahir Mahomed
 - Shaiyan Khan
 - Steven Yong
 
