@@ -23,7 +23,7 @@ The application leverages several iOS frameworks to deliver a modern, responsive
 * **UserDefaults**: Employed for local data persistence of wallet addresses
 
 ## Screenshots
-[Include 3-4 screenshots of your app here]
+
 
 ## Technical Implementation
 
